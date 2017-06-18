@@ -1,0 +1,16 @@
+--- docker-node/6.11/alpine/Dockerfile	2017-06-18 15:35:34.687897938 -0500
++++ docker-node/6.11/alpine/Dockerfile.rpi	2017-06-18 15:41:27.194616599 -0500
+@@ -1,4 +1,4 @@
+-FROM alpine:3.4
++FROM whw3/alpine
+ 
+ ENV NPM_CONFIG_LOGLEVEL info
+ ENV NODE_VERSION 6.11.0
+--- docker-node/8.1/alpine/Dockerfile	2017-06-18 15:42:22.304104548 -0500
++++ docker-node/8.1/alpine/Dockerfile.rpi	2017-06-18 15:42:52.073828044 -0500
+@@ -1,4 +1,4 @@
+-FROM alpine:3.6
++FROM whw3/alpine
+ 
+ ENV NPM_CONFIG_LOGLEVEL info
+ ENV NODE_VERSION 8.1.2
