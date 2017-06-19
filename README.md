@@ -3,6 +3,7 @@ Official NodeJS docker image adapted for use with Raspberry Pi
 
 ### Assumptions
 * home for docker build images is ***/srv/docker***
+* patch is installed on the host system
 
 To build the docker image run ***/srv/docker/nodejs-official/build.sh***
 ```
