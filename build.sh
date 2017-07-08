@@ -8,7 +8,7 @@ while [[ $# -gt 0 ]]; do
         ;;
         -8)
         VERSION=8
-        NODE_VERSION="8.1.2"
+        NODE_VERSION="8.1.3"
         ;;
         *)
         echo "Unknown option '$key'"
