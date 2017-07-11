@@ -44,7 +44,7 @@ else
     cd /srv/docker/nodejs-official/docker-node/8.1/alpine/
 fi
 
-grep NODE_VERSION Dockerfile| sed -e 's/ENV/export/;s/$/"/;s/VERSION /VERSION="/' > /srv/docker/nodejs-official/NODE_VERSION
+grep NODE_VERSION Dockerfile| grep ENV|  sed -e 's/ENV/export/;s/$/"/;s/VERSION /VERSION="/' > /srv/docker/nodejs-official/NODE_VERSION
 source /srv/docker/nodejs-official/NODE_VERSION
 RELEASE=$(echo $NODE_VERSION | sed 's/\.[0-9]\+$//')
 cat << EOF > options 
