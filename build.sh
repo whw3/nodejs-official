@@ -46,7 +46,7 @@ fi
 
 grep NODE_VERSION Dockerfile| sed -e 's/ENV/export/;s/$/"/;s/VERSION /VERSION="/' > /srv/docker/nodejs-official/NODE_VERSION
 source /srv/docker/nodejs-official/NODE_VERSION
-RELEASE=$(echo NODE_VERSION | sed 's/\.[0-9]\+$//')
+RELEASE=$(echo $NODE_VERSION | sed 's/\.[0-9]\+$//')
 cat << EOF > options 
 export RELEASE="v$RELEASE"
 export TAGS=(whw3/alpine-node:$RELEASE whw3/alpine-node:latest)
