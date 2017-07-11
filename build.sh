@@ -4,11 +4,9 @@ while [[ $# -gt 0 ]]; do
     case "$key" in
         -6)
         VERSION=6
-        NODE_VERSION="6.11.0"
         ;;
         -8)
         VERSION=8
-        NODE_VERSION="8.1.3"
         ;;
         *)
         echo "Unknown option '$key'"
@@ -31,6 +29,7 @@ fi
 cd /srv/docker/nodejs-official/
 git clone https://github.com/nodejs/docker-node.git
 patch -p0 < docker-node.patch
+
 if [[ "$(docker images -q whw3/alpine 2> /dev/null)" == "" ]]; then
     if [[ ! -d /srv/docker/alpine ]]; then
         cd /srv/docker/
@@ -44,4 +43,13 @@ if [ "$VERSION" = "6" ]; then
 else
     cd /srv/docker/nodejs-official/docker-node/8.1/alpine/
 fi
-docker build -t whw3/alpine-node:$NODE_VERSION .
+
+grep NODE_VERSION Dockerfile| sed -e 's/ENV/export/;s/$/"/;s/VERSION /VERSION="/' > /srv/docker/nodejs-official/NODE_VERSION
+source /srv/docker/nodejs-official/NODE_VERSION
+RELEASE=$(echo NODE_VERSION | sed 's/\.[0-9]\+$//')
+cat << EOF > options 
+export RELEASE="v$RELEASE"
+export TAGS=(whw3/alpine-node:$RELEASE whw3/alpine-node:latest)
+EOF
+
+docker build -t whw3/alpine-node .
